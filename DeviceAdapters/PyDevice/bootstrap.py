@@ -178,6 +178,8 @@ class PyDevice:
             self.device_type = 'XYStage'
         elif self._init_stage():
             self.device_type = 'Stage'
+        elif self._init_slm():
+            self.device_type = 'SLM'
         else:
             self.device_type = 'Device'
 
@@ -209,6 +211,11 @@ class PyDevice:
     def _init_stage(self) -> bool:
         """Checks if the device corresponds to an XYStage, and prepares the stage object if it does"""
         return self._has_properties(('Position-um', 'float'), ('StepSize-um', 'float')) and self._has_methods('home')
+    
+    def _init_slm(self) -> bool:
+        """Checks if the device corresponds to an SLM, and prepares the SLM object if it does"""
+        return self._has_properties(('Width', 'int'), ('Height', 'int'), ('Exposure-ms', 'float')) and self._has_methods('display')
+
 
     def _has_properties(self, *properties) -> bool:
         """Checks if the device has the specified properties of the specified types

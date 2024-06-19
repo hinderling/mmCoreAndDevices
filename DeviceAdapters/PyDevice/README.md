@@ -271,7 +271,7 @@ First, install the following prerequisites
   here <https://visualstudio.microsoft.com/free-developer-offers/>. Make sure to include the c++ build tools during
   installation.
 * **Python 3**.
-  To build PyDevice, the file `python39.lib` is needed. This file should be located in the folder `3rdpartypublic/Python/cp39-win_amd64libs/libs`, where `3rdpartypublic` is located in the parent folder of the parent folder of `mmCoreAndDevices`. For example, if the repository is located in `c:\git\mmCoreAndDevices`, we expect to find the file at `c:\3rdpartypublic\Python\cp39-win_amd64libs\libs\python39.lib`. This file can be copied from the installation directory of a Python 3.9 installation (e. g. <https://www.python.org/ftp/python/3.9.1/>).
+  To build PyDevice, the file `python39.lib` is needed. This file should be located in the folder `3rdpartypublic/Python/cp39-win_amd64/libs`, where `3rdpartypublic` is located in the parent folder of the parent folder of `mmCoreAndDevices`. For example, if the repository is located in `c:\git\mmCoreAndDevices`, we expect to find the file at `c:\3rdpartypublic\Python\cp39-win_amd64\libs\python39.lib`. This file can be copied from the installation directory of a Python 3.9 installation (e. g. <https://www.python.org/ftp/python/3.9.1/>).
 
 * **Micro-Manager 2.0**
   You can download the latest version (nightly build) here: https://micro-manager.org/Micro-Manager_Nightly_Builds. Alternatively, you can build the micro-manager application from source, or use an older, stable, version. Note that Micro-Manager only recognizes plugins with the correct internal version number, so if the Mirco-Manager version is too old, it will not recognize the plugin.

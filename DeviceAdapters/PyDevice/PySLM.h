@@ -2,34 +2,47 @@
 #include "PyDevice.h"
 
 using PySLMClass = CPyDeviceTemplate<CSLMBase<std::monostate>>;
+
 class CPySLM : public PySLMClass {
+    PyObj set_image_;
+    PyObj display_image_;
+    PyObj set_pixels_to_;
+
 public:
     CPySLM(const string& id) : PySLMClass(id) {}
-    
-    // Set the image to be displayed on the SLM
+
+    int SetImage(unsigned int * pixels) override {
+        return DEVICE_UNSUPPORTED_COMMAND;
+    }
     int SetImage(unsigned char* pixels) override;
-    
-    // Set all pixels on the SLM to a specific intensity
-    int SetPixelsTo(unsigned char intensity) override;
-    
-    // Display the image on the SLM
     int DisplayImage() override;
-
-    // Set the exposure time for the SLM
+    int SetPixelsTo(unsigned char intensity) override;
     int SetExposure(double interval_ms) override;
-
-    // Get the exposure time for the SLM
     double GetExposure() override;
+    unsigned GetWidth() override {
+        return 512;
+    }
+    unsigned GetHeight() override {
+        return 512;
+    }
+    unsigned GetNumberOfComponents() override {
+        return 1;
+    }
+    unsigned GetBytesPerPixel() override {
+        return 1;
+    }
 
-    // Get the width of the SLM
-    long GetWidth() const override;
+    int IsSLMSequenceable(bool& isSequenceable) const override {
+        isSequenceable = false;
+        return 0;
+    }
 
-    // Get the height of the SLM
-    long GetHeight() const override;
+    int SetPixelsTo(unsigned char red, unsigned char green, unsigned char blue) override {
+        return DEVICE_UNSUPPORTED_COMMAND;
+    }
 
-    // Get the number of components for the SLM
-    long GetNumberOfComponents() const override;
+    int ConnectMethods(const PyObj& methods) override;
 
-    // Get the bytes per pixel for the SLM
-    long GetBytesPerPixel() const override;
+
+
 };

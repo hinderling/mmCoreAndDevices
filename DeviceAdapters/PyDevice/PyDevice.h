@@ -167,6 +167,16 @@ public:
         return this->SetProperty(property, std::to_string(value).c_str());
     }
 
+    unsigned GetUnsignedProperty(const char* property) const {
+        long value = 0;
+        const_cast<BaseType*>(static_cast<const BaseType*>(this))->GetProperty(property, value);
+        return static_cast<unsigned>(value);
+    }
+
+    int SetUnsignedProperty(const char* property, unsigned value) {
+        return this->SetProperty(property, std::to_string(value).c_str());
+    }
+
     virtual int ConnectMethods(const PyObj& methods)
     {
         busy_ = methods.GetDictItem("busy");

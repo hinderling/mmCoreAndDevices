@@ -203,6 +203,8 @@ class PyDevice:
 
         return True
 
+    # Properties are read from Keywords in the .cpp file
+
     def _init_xy_stage(self) -> bool:
         """Checks if the device corresponds to an XYStage, and prepares the stage object if it does"""
         return self._has_properties(('X-um', 'float'), ('Y-um', 'float'), ('StepSizeX-um', 'float'),
@@ -214,8 +216,7 @@ class PyDevice:
     
     def _init_slm(self) -> bool:
         """Checks if the device corresponds to an SLM, and prepares the SLM object if it does"""
-        return self._has_properties(('Width', 'int'), ('Height', 'int'), ('Exposure-ms', 'float')) and self._has_methods('display')
-
+        return self._has_properties(('NumberOfComponents', 'int'), ('BytesPerPixel', 'int'))
 
     def _has_properties(self, *properties) -> bool:
         """Checks if the device has the specified properties of the specified types
